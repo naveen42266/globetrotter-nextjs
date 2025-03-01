@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import { MongoClient } from 'mongodb';
 import axios from 'axios';
 import { Destination } from '../types';
 import * as dotenv from 'dotenv';
+import path from 'path';
 
 // Load environment variables from .env or .env.local
 dotenv.config({ path: path.join(__dirname, '../.env') });
@@ -13,6 +13,15 @@ if (!process.env.NEXT_PUBLIC_GEMINI_API_KEY) {
   console.error('NEXT_PUBLIC_GEMINI_API_KEY is not set in the environment variables.');
   process.exit(1);
 }
+
+// MongoDB connection URI
+const uri = process.env.MONGODB_URI; // Ensure this is set in your environment variables
+if (!uri) {
+  console.error('MONGODB_URI is not set in the environment variables.');
+  process.exit(1);
+}
+
+const client = new MongoClient(uri);
 
 const api = axios.create({
   baseURL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
@@ -93,7 +102,7 @@ async function generateDestination(destinationName: string): Promise<Destination
   return null;
 }
 
-async function generateFullDataset(): Promise<Destination[]> {
+async function generateFullDataset(): Promise<void> {
   console.log('Starting to generate the full dataset...');
   const destinationsToGenerate = [
     "Sydney, Australia",
@@ -106,31 +115,132 @@ async function generateFullDataset(): Promise<Destination[]> {
     "Venice, Italy",
     "Hong Kong",
     "Istanbul, Turkey",
-    // Add more to reach 100+ destinations
+    "Paris, France",
+    "London, UK",
+    "New York City, USA",
+    "Rome, Italy",
+    "Bangkok, Thailand",
+    "Bali, Indonesia",
+    "Tokyo, Japan",
+    "Los Angeles, USA",
+    "Las Vegas, USA",
+    "San Francisco, USA",
+    "Miami, USA",
+    "Toronto, Canada",
+    "Vancouver, Canada",
+    "Cancún, Mexico",
+    "Mexico City, Mexico",
+    "Prague, Czech Republic",
+    "Vienna, Austria",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Florence, Italy",
+    "Milan, Italy",
+    "Athens, Greece",
+    "Santorini, Greece",
+    "Moscow, Russia",
+    "Saint Petersburg, Russia",
+    "Stockholm, Sweden",
+    "Copenhagen, Denmark",
+    "Oslo, Norway",
+    "Helsinki, Finland",
+    "Dublin, Ireland",
+    "Edinburgh, Scotland",
+    "Zurich, Switzerland",
+    "Geneva, Switzerland",
+    "Lucerne, Switzerland",
+    "Brussels, Belgium",
+    "Lisbon, Portugal",
+    "Porto, Portugal",
+    "Madrid, Spain",
+    "Seville, Spain",
+    "Buenos Aires, Argentina",
+    "Santiago, Chile",
+    "Marrakech, Morocco",
+    "Casablanca, Morocco",
+    "Cape Town, South Africa",
+    "Johannesburg, South Africa",
+    "Doha, Qatar",
+    "Abu Dhabi, UAE",
+    "Kuala Lumpur, Malaysia",
+    "Phuket, Thailand",
+    "Chiang Mai, Thailand",
+    "Hanoi, Vietnam",
+    "Ho Chi Minh City, Vietnam",
+    "Seoul, South Korea",
+    "Kyoto, Japan",
+    "Osaka, Japan",
+    "Shanghai, China",
+    "Beijing, China",
+    "Guangzhou, China",
+    "Macau, China",
+    "Taipei, Taiwan",
+    "New Delhi, India",
+    "Jaipur, India",
+    "Goa, India",
+    "Agra, India",
+    "Chennai, India",
+    "Bangalore, India",
+    "Kathmandu, Nepal",
+    "Colombo, Sri Lanka",
+    "Manila, Philippines",
+    "Boracay, Philippines",
+    "Fiji Islands",
+    "Male, Maldives",
+    "Auckland, New Zealand",
+    "Queenstown, New Zealand",
+    "Christchurch, New Zealand",
+    "Honolulu, Hawaii, USA",
+    "Orlando, USA",
+    "Washington D.C., USA",
+    "Chicago, USA",
+    "Boston, USA",
+    "San Diego, USA",
+    "Havana, Cuba",
+    "San Juan, Puerto Rico",
+    "Lima, Peru",
+    "Cusco, Peru",
+    "Bogotá, Colombia",
+    "Cartagena, Colombia",
+    "Rio de Janeiro, Brazil",
+    "Sao Paulo, Brazil",
+    "Quito, Ecuador",
+    "Reykjavik, Iceland",
+    "Dubrovnik, Croatia",
+    "Zagreb, Croatia",
+    "Ljubljana, Slovenia",
+    "Bratislava, Slovakia"
   ];
 
   const fullDataset: Destination[] = [...starterDataset];
 
-  for (const destination of destinationsToGenerate) {
-    const data = await generateDestination(destination);
-    if (data) {
-      fullDataset.push(data);
+  try {
+    await client.connect();
+    const database = client.db('globetrotter');
+    const collection = database.collection<Destination>('destinations');
+
+    // Clear existing data (optional)
+    await collection.deleteMany({});
+
+    // Insert starter dataset
+    await collection.insertMany(starterDataset);
+
+    // Generate and insert new destinations
+    for (const destination of destinationsToGenerate) {
+      const data = await generateDestination(destination);
+      if (data) {
+        await collection.insertOne(data);
+        fullDataset.push(data);
+      }
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Add a delay to respect API rate limits
     }
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Add a delay to respect API rate limits
-  }
 
-  const dataDir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
+    console.log(`Generated dataset with ${fullDataset.length} destinations.`);
+  } catch (error) {
+    console.error('Error generating full dataset:', error);
+  } finally {
+    await client.close();
   }
-
-  fs.writeFileSync(
-    path.join(dataDir, 'destinations.json'), 
-    JSON.stringify(fullDataset, null, 2)
-  );
-  
-  console.log(`Generated dataset with ${fullDataset.length} destinations.`);
-  return fullDataset;
 }
 
 generateFullDataset().catch(err => {
