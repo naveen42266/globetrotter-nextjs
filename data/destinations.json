@@ -1,0 +1,145 @@
+[
+  {
+    "id": "sydney-australia",
+    "name": "Sydney, Australia",
+    "clues": [
+      "This city is famous for its iconic opera house.",
+      "It is located in the southeastern part of Australia."
+    ],
+    "funFacts": [
+      "Sydney is the most populous city in Australia.",
+      "The Sydney Opera House is a UNESCO World Heritage Site."
+    ],
+    "trivia": "Sydney was founded in 1788 by British settlers."
+  },
+  {
+    "id": "sydney-australia",
+    "name": "Sydney, Australia",
+    "clues": [
+      "Home to an iconic opera house with a unique design, often photographed from the harbour.",
+      "Famous for its stunning harbour, featuring a bridge that's a marvel of engineering and a popular tourist attraction."
+    ],
+    "funFacts": [
+      "Sydney's Bondi Beach is one of the most famous beaches in the world, attracting surfers and sunbathers alike.",
+      "The Sydney Opera House's distinctive white sails are made of pre-cast concrete panels."
+    ],
+    "trivia": "The Sydney Harbour Bridge was nicknamed 'The Coathanger' during its construction."
+  },
+  {
+    "id": "cairo-egypt",
+    "name": "Cairo, Egypt",
+    "clues": [
+      "Home to ancient wonders and bustling souks, this city straddles the Nile, a captivating blend of old and new.",
+      "Land of pyramids and pharaohs, its historical heart echoes with the whispers of millennia, a museum of civilization itself."
+    ],
+    "funFacts": [
+      "Cairo is one of the oldest cities in the world, with a history spanning thousands of years.",
+      "The city boasts a vibrant street food scene, offering a delicious array of flavors and culinary traditions."
+    ],
+    "trivia": "The Great Sphinx of Giza, a colossal limestone statue, is located on the Giza plateau near Cairo.  Its age remains debated by historians, with estimates ranging from 2600-2500 BCE."
+  },
+  {
+    "id": "rio-de-janeiro-brazil",
+    "name": "Rio de Janeiro, Brazil",
+    "clues": [
+      "Home to a world-famous statue of a Christ-like figure overlooking a stunning bay.",
+      "Known for its vibrant Carnival celebrations, beautiful beaches, and iconic Sugarloaf Mountain."
+    ],
+    "funFacts": [
+      "The city's beaches, such as Copacabana and Ipanema, are world-renowned and have inspired countless songs and films.",
+      "Rio de Janeiro is home to the largest urban forest in the world, the Tijuca Forest, offering incredible biodiversity and hiking opportunities."
+    ],
+    "trivia": "The Christ the Redeemer statue, while iconic, was almost built in a different location initially.  The current location was chosen because it offered better visibility."
+  },
+  {
+    "id": "barcelona-spain",
+    "name": "Barcelona, Spain",
+    "clues": [
+      "I'm a city known for my vibrant architecture, including a famous unfinished church with towering spires.",
+      "My beaches are bustling with life, yet I also boast a rich history and a passionate football club."
+    ],
+    "funFacts": [
+      "The Sagrada Família, Antoni Gaudí's masterpiece, has been under construction for over 140 years and is still not finished!",
+      "Park Güell, another Gaudí creation, offers stunning city views and whimsical architecture inspired by nature."
+    ],
+    "trivia": "Barcelona was the host city for the 1992 Summer Olympics."
+  },
+  {
+    "id": "amsterdam-netherlands",
+    "name": "Amsterdam, Netherlands",
+    "clues": [
+      "I'm a city known for canals, bicycles, and a certain type of flower.",
+      "Home to the Anne Frank House and a vibrant art scene, I'm a hub of history and culture in a low-lying country."
+    ],
+    "funFacts": [
+      "Amsterdam has more bicycles than people.",
+      "The city's canal ring is a UNESCO World Heritage site."
+    ],
+    "trivia": "The first modern stock exchange was founded in Amsterdam in 1602."
+  },
+  {
+    "id": "dubai_uae",
+    "name": "Dubai, UAE",
+    "clues": [
+      "I'm a city of shimmering skyscrapers and opulent malls, where luxury knows no bounds.  My desert landscape is juxtaposed against futuristic architecture.",
+      "I boast the world's tallest building and man-made islands shaped like palm trees.  My vibrant culture blends tradition with cutting-edge innovation."
+    ],
+    "funFacts": [
+      "The Burj Khalifa, the world's tallest building, is located in Dubai and can be seen from miles away.",
+      "Dubai Police force boasts a fleet of luxury supercars, including Bugatti Veyrons and Ferraris, used for patrols and special operations."
+    ],
+    "trivia": "Dubai's Palm Jumeirah, one of the world's largest artificial islands, is shaped like a palm tree and is visible from space."
+  },
+  {
+    "id": "singapore-merlion",
+    "name": "Singapore, Singapore",
+    "clues": [
+      "A dazzling island nation known for its futuristic skyline and vibrant blend of cultures.",
+      "Home to iconic Merlion statues and a meticulously clean, green urban environment."
+    ],
+    "funFacts": [
+      "Singapore has the highest density of millionaires in the world.",
+      "Chewing gum is illegal in Singapore."
+    ],
+    "trivia": "Singapore is officially a republic, but it was once a British colony, achieving independence in 1965."
+  },
+  {
+    "id": "venice-italy",
+    "name": "Venice, Italy",
+    "clues": [
+      "A city of canals, where gondolas glide and bridges sigh.",
+      "Built on water, its beauty is both timeless and fragile, a masterpiece of architecture and ingenuity."
+    ],
+    "funFacts": [
+      "Venice has no cars, relying instead on boats and foot traffic, creating a unique and peaceful atmosphere.",
+      "The city's foundations are made of millions of wooden piles driven into the seabed, a testament to its clever engineering."
+    ],
+    "trivia": "The Rialto Bridge, one of Venice's most iconic landmarks, was initially built from wood and has been rebuilt several times throughout history before its final construction in stone."
+  },
+  {
+    "id": "hong-kong",
+    "name": "Hong Kong, China",
+    "clues": [
+      "A vibrant city where East meets West, boasting towering skyscrapers and bustling markets.",
+      "Known for its delicious dim sum, stunning harbour views, and iconic Peak Tram."
+    ],
+    "funFacts": [
+      "Hong Kong is home to over 300 islands!",
+      "The world's longest outdoor covered escalator system is located in Hong Kong."
+    ],
+    "trivia": "Hong Kong was under British rule for over 150 years before its handover to China in 1997."
+  },
+  {
+    "id": "istanbul_turkey",
+    "name": "Istanbul, Turkey",
+    "clues": [
+      "I straddle two continents and boast a history spanning empires.",
+      "My bustling bazaars offer a sensory overload of sights, sounds, and spices.  A bridge connects my European and Asian sides."
+    ],
+    "funFacts": [
+      "Istanbul is home to over 1,500 mosques, reflecting its rich Islamic heritage.",
+      "The city's iconic Hagia Sophia has served as a cathedral, a mosque, and now a museum – a testament to its shifting history."
+    ],
+    "trivia": "Istanbul was once known as Constantinople and was the capital of the Byzantine and Ottoman empires."
+  }
+]
