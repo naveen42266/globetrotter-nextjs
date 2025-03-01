@@ -3,78 +3,9 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import UsernameForm from '../components/UsernameForm';
-import OpenAI from "openai";
-import * as dotenv from 'dotenv';
-import path from 'path';
-import axios from 'axios';
 
-// Load environment variables from .env or .env.local
-dotenv.config({ path: path.join(__dirname, '../.env') });
-dotenv.config({ path: path.join(__dirname, '../.env.local') });
-const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
-
-async function fetchCompletion() {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      {
-        role: "user",
-        content: "Write a haiku about recursion in programming.",
-      },
-    ],
-    store: true,
-  });
-
-  console.log(completion.choices[0].message);
-}
-
-// fetchCompletion();
-
-const api = axios.create({
-  baseURL: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-async function fetchGeminiCompletion(body: any) {
-  try {
-    const response = await api.post(`?key=AIzaSyDDfRoOqKf7UmiOygurskCjyQ1jqBRBoJA`, body);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("Error generating content:", error.response?.data || error.message);
-    } else {
-      console.error("Error generating content:", error);
-    }
-    throw error;
-  }
-}
-
-const generateContent = async (prompt: any) => {
-  const body = {
-    contents: [
-      {
-        parts: [{ text: prompt }]
-      }
-    ]
-  };
-
-  try {
-    const response = await fetchGeminiCompletion(body);
-    // setText(response.candidates[0].content.parts[0].text)
-    console.log("Response:", response.candidates[0].content.parts[0].text);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
 const Home: NextPage = () => {
 
-  // generateContent("What is the future of AI");
-  console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY)
-
-  console.log(process.env.GEMINI_API_KEY)
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Head>
