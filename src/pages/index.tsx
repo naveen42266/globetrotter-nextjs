@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             <p className="text-lg text-gray-600">The Ultimate Travel Guessing Game!</p>
           </header>
           
-          {isLoggedIn ? null : <UsernameForm />}
+          {isLoggedIn ? null : <UsernameForm route={''}  />}
 
           <div className="mt-10 p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">How to Play</h2>

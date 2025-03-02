@@ -175,7 +175,7 @@ const Game = ({ challengeUsername }: GameProps) => {
                   Next Destination
                 </button>
 
-                <ShareButton username={username} score={score} />
+                <ShareButton username={username} score={score} gameId={''} />
               </div>
             )}
           </>

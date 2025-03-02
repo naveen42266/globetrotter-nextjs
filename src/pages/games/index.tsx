@@ -61,7 +61,7 @@ const GamePage: NextPage = () => {
         {isLoggedIn ? (
           <GameList />
         ) : (
-          <UsernameForm />
+          <UsernameForm route={''} />
         )}
 
       </main>
