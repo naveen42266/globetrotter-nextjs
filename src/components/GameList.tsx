@@ -33,12 +33,12 @@ const GameList = () => {
               //     Game {game.id + 1}
               //   </button>
               // </div>
-              <Link key={index} href={`/games/${game.id}`} className='mb-2'>
+              <div key={index} className='mb-2' onClick={() => router.push(`/games/${game.id}`)}>
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                   <h2 className="text-xl font-bold">Game Segment {game.id + 1}</h2>
                   <p className="text-gray-600">Click to play this segment!</p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
