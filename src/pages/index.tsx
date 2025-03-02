@@ -1,10 +1,19 @@
-// pages/index.tsx
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import UsernameForm from '../components/UsernameForm';
+import HeaderNav from '../components/HeaderNav'; // Import the HeaderNav component
+import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+
+  // Check if the user is logged in (client-side only)
+  useEffect(() => {
+    const username = localStorage.getItem('globetrotter_username');
+    setIsLoggedIn(username !== null);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
@@ -14,14 +23,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Add the HeaderNav component */}
+      <HeaderNav />
+
       <main className="flex-grow py-10 px-4">
         <div className="max-w-4xl mx-auto">
           <header className="text-center mb-10">
             <h1 className="text-4xl font-bold mb-2">🧩 Globetrotter Challenge</h1>
             <p className="text-lg text-gray-600">The Ultimate Travel Guessing Game!</p>
           </header>
-
-          <UsernameForm />
+          
+          {isLoggedIn ? null : <UsernameForm />}
 
           <div className="mt-10 p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">How to Play</h2>

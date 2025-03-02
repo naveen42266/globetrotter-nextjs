@@ -2,17 +2,21 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 
-const UsernameForm = () => {
+interface UsernameFormProps {
+  route: string;
+}
+
+const UsernameForm: React.FC<UsernameFormProps> = ({ route }) => {
   const [username, setUsername] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!username.trim()) return;
-    
+
     setLoading(true);
-    
+
     try {
       const response = await fetch('/api/users', {
         method: 'POST',
@@ -21,13 +25,21 @@ const UsernameForm = () => {
         },
         body: JSON.stringify({ username }),
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         // Save username to localStorage for persistence
         localStorage.setItem('globetrotter_username', username);
-        router.push('/game');
+
+        if (route) {
+          console.log('route', route);
+          router.reload();
+          router.push(`${route}`)
+        }
+        else {
+          router.push('/games');
+        }
       }
     } catch (error) {
       console.error('Error registering user:', error);
@@ -35,7 +47,7 @@ const UsernameForm = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-center">Join the Globetrotter Challenge!</h2>
