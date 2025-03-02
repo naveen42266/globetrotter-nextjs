@@ -14,11 +14,11 @@
 //         <meta name="description" content="Test your geography knowledge!" />
 //         <link rel="icon" href="/favicon.ico" />
 //       </Head>
-      
+
 //       <main className="flex-grow py-10 px-4">
 //         <Game />
 //       </main>
-      
+
 //       <footer className="bg-white py-4 text-center text-gray-600">
 //         <p>© {new Date().getFullYear()} Globetrotter Challenge</p>
 //       </footer>
@@ -38,25 +38,25 @@ import Head from 'next/head';
 import UsernameForm from '@/src/components/UsernameForm';
 
 const GamePage: NextPage = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-    
-   // Check if the user is logged in (client-side only)
-    useEffect(() => {
-      const username = localStorage.getItem('globetrotter_username');
-      setIsLoggedIn(username !== null);
-    }, []);
-    
-   
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+
+  // Check if the user is logged in (client-side only)
+  useEffect(() => {
+    const username = localStorage.getItem('globetrotter_username');
+    setIsLoggedIn(username !== null);
+  }, []);
+
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-        {/* Add the HeaderNav component */}
-        <HeaderNav />
+      {/* Add the HeaderNav component */}
+      <HeaderNav />
       <Head>
         <title>Games - Globetrotter Challenge</title>
         <meta name="description" content="Challenge yourself with our geography quizzes!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <main className="flex-grow py-10 px-4">
         {isLoggedIn ? (
           <GameList />
@@ -65,7 +65,7 @@ const GamePage: NextPage = () => {
         )}
 
       </main>
-      
+
       <footer className="bg-white py-4 text-center text-gray-600">
         <p>© {new Date().getFullYear()} Globetrotter Challenge</p>
       </footer>

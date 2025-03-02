@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps<GamePageProps> = async (cont
 
   try {
     // Fetch quizzes from your API endpoint
-    const res = await fetch(`http://localhost:3000/api/game/${id}`); // Replace with your actual API URL
+    const res = await fetch(`https://globetrotter-nextjs.vercel.app/api/game/${id}`); // Replace with your actual API URL
     if (!res.ok) {
       throw new Error('Failed to fetch quizzes');
     }

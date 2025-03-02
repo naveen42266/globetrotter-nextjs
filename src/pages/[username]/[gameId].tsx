@@ -8,13 +8,13 @@ import { useEffect, useState } from 'react';
 import UsernameForm from '@/src/components/UsernameForm';
 
 interface GamePageProps {
-  id: string; // ID of the game segment
+  gameId: string; // ID of the game segment
   quizzes: Destination[]; // Array of quizzes for the game segment
   username: string;
 }
 
 
-const GamePage: NextPage<GamePageProps> = ({ id, quizzes, username }) => {
+const GamePage: NextPage<GamePageProps> = ({ gameId, quizzes, username }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 
@@ -33,9 +33,9 @@ const GamePage: NextPage<GamePageProps> = ({ id, quizzes, username }) => {
       </Head>
       <main className="flex-grow py-10 px-4">
         {isLoggedIn ? (
-          <GameComponent id={id} quizzes={quizzes as any} challengeUsername={username} />) :
+          <GameComponent id={gameId} quizzes={quizzes as any} challengeUsername={username} />) :
           (
-            <UsernameForm route={`/${username}/${id}`} />
+            <UsernameForm route={`/${username}/${gameId}`} />
           )}
       </main>
 
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<GamePageProps> = async (cont
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/api/game/${gameId}`);
+    const res = await fetch(`https://globetrotter-nextjs.vercel.app/api/game/${gameId}`);
     if (!res.ok) throw new Error('Failed to fetch quizzes');
 
     const quizzes = await res.json();
@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<GamePageProps> = async (cont
 
     return {
       props: {
-        id: gameId,
+        gameId: gameId,
         quizzes,
         username,
       },
